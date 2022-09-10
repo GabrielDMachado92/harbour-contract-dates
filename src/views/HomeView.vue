@@ -49,7 +49,10 @@ export default {
   },
   methods: {
     downloadPDF () {
-      window.location.href = this.selectedEvent.contentFull
+      window.open(
+        this.selectedEvent.contentFull,
+        '_blank' // <- This is what makes it open in a new window.
+      )
     },
 
     onEventClick (event, e) {
@@ -89,7 +92,7 @@ export default {
 
           const formattedDate = day + '-' + month + '-' + year
 
-          const event = { start: formattedDate, end: formattedDate, title: agreement.filename, content: '<a href="/Users/gabrielmachado/Documents/Development/harbour-contract-dates-backend/contracts/">Link to contract</a>' }
+          const event = { start: formattedDate, end: formattedDate, title: agreement.filename, content: '<a href="http://127.0.0.1:8887/testdate.pdf">Link to contract</a>' }
           this.events.push(event)
           console.log(this.events)
         }
@@ -124,7 +127,7 @@ export default {
 
           const formattedDate = day + '-' + month + '-' + year
 
-          const event = { start: formattedDate, end: formattedDate, title: agreement.filename, contentFull: agreement.url + agreement.filename }
+          const event = { start: formattedDate, end: formattedDate, title: agreement.filename, contentFull: 'http://127.0.0.1:8887/' + agreement.filename }
           this.events.push(event)
         }
 
