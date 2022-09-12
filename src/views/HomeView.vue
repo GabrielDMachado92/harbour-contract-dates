@@ -92,12 +92,15 @@ export default {
 
           const formattedDate = day + '-' + month + '-' + year
 
-          const event = { start: formattedDate, end: formattedDate, title: agreement.filename, content: '<a href="http://127.0.0.1:8887/testdate.pdf">Link to contract</a>' }
+          const event = { start: formattedDate, end: formattedDate, title: agreement.filename, contentFull: 'http://127.0.0.1:8887/' + agreement.filename }
           this.events.push(event)
           console.log(this.events)
         }
       }
       sendFile()
+      setTimeout(() => {
+        this.success = false
+      }, 5000)
     },
     selectedFile: function () {
       this.dropzoneFile = document.querySelector('.dropzoneFile').files
